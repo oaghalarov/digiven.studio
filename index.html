@@ -1388,16 +1388,27 @@
             <div style="position: absolute; top: 16px; right: 16px; font-size: 9px; color: var(--muted); opacity: 0.6;" class="font-mono">FOOD.RANK</div>
             <!-- Flavo specific graphic -->
             <svg class="blueprint-graphic" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Dish base -->
-              <path d="M 20 60 Q 50 80 80 60 L 80 55 Q 50 70 20 55 Z" stroke="var(--accent)" stroke-width="1.2" opacity="0.6"/>
-              <!-- Cover top -->
-              <path d="M 25 50 Q 50 10 75 50" stroke="var(--accent)" stroke-width="1.5" opacity="0.8" fill="none"/>
-              <!-- Star / Rating node inside -->
-              <polygon points="50,25 53,35 63,35 55,42 58,52 50,45 42,52 45,42 37,35 47,35" stroke="var(--accent)" stroke-width="1" fill="var(--accent)" opacity="0.9"/>
-              <!-- Data lines / steam -->
-              <line x1="35" y1="20" x2="35" y2="10" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 2"/>
-              <line x1="65" y1="20" x2="65" y2="10" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 2"/>
-              <circle cx="50" cy="5" r="2" fill="var(--border)"/>
+              <!-- Outer leaderboard rings/tiers -->
+              <circle cx="50" cy="50" r="30" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 2"/>
+              <circle cx="50" cy="50" r="20" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 2"/>
+              <circle cx="50" cy="50" r="10" stroke="var(--border)" stroke-width="1"/>
+              
+              <!-- Central top-ranked item -->
+              <polygon points="50,42 58,50 50,58 42,50" fill="var(--accent)" opacity="0.9"/>
+              <circle cx="50" cy="50" r="2" fill="var(--bg)"/>
+
+              <!-- Radar/Network lines radiating out -->
+              <line x1="50" y1="50" x2="50" y2="15" stroke="var(--accent)" stroke-width="1.2" opacity="0.6"/>
+              <line x1="50" y1="50" x2="80" y2="65" stroke="var(--accent)" stroke-width="1.2" opacity="0.6"/>
+              <line x1="50" y1="50" x2="20" y2="65" stroke="var(--accent)" stroke-width="1.2" opacity="0.6"/>
+
+              <!-- Data nodes on the radar -->
+              <circle cx="50" cy="15" r="4" stroke="var(--accent)" stroke-width="1.5"/>
+              <circle cx="80" cy="65" r="3" fill="var(--accent)"/>
+              <circle cx="20" cy="65" r="3" fill="var(--accent)"/>
+
+              <!-- Connecting the outer nodes to form a triangle/radar -->
+              <polygon points="50,15 80,65 20,65" stroke="var(--accent)" stroke-width="1" opacity="0.4" stroke-dasharray="4 4" fill="none"/>
             </svg>
           </div>
           <div class="pc-content">
