@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <style>
+    .bg {
+      fill: none;
+      transition: fill 0.3s ease;
+    }
+    @media (prefers-color-scheme: light) {
+      .bg {
+        fill: #0A0C0B;
+      }
+    }
+  </style>
+  <rect class="bg" width="40" height="40" rx="8"/>
+  <line x1="8" y1="32" x2="20" y2="20" stroke="#C8F06A" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  <line x1="20" y1="20" x2="32" y2="8" stroke="#C8F06A" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="8" cy="32" r="3" fill="#C8F06A" opacity="0.5"/>
+  <circle cx="20" cy="20" r="5.5" fill="#C8F06A" opacity="0.8"/>
+  <circle cx="32" cy="8" r="8" fill="#C8F06A"/>
+</svg>
