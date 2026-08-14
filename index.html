@@ -5,8 +5,23 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Digiven Studio — Digital Venture Studio</title>
   <meta name="description" content="We find gaps. We build fast. We launch real. Digiven Studio is a digital venture studio focused on building and testing high-value products.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#0A0C0B"/>
+  <link rel="canonical" href="https://digiven.studio/"/>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Digiven Studio — Digital Venture Studio"/>
+  <meta property="og:description" content="We find gaps. We build fast. We launch real. Digiven Studio is a digital venture studio focused on building and testing high-value products."/>
+  <meta property="og:url" content="https://digiven.studio/"/>
+  <meta property="og:site_name" content="Digiven Studio"/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Digiven Studio — Digital Venture Studio"/>
+  <meta name="twitter:description" content="We find gaps. We build fast. We launch real. Digiven Studio is a digital venture studio focused on building and testing high-value products."/>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <script>document.documentElement.classList.add('js');</script>
   <style>
     :root {
       --bg: #0A0C0B;
@@ -16,7 +31,7 @@
       --accent-dim: rgba(200, 240, 106, 0.06);
       --accent-border: rgba(200, 240, 106, 0.15);
       --ink: #F2F0EB;
-      --muted: #6B7D70;
+      --muted: #93A899;
       --border: rgba(242, 240, 235, 0.06);
       --border-hover: rgba(242, 240, 235, 0.15);
       
@@ -64,12 +79,15 @@
 
     /* Scroll Reveal Animation base classes */
     .reveal {
-      opacity: 0;
-      transform: translateY(24px);
       transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .reveal.active {
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .js .reveal.active {
       opacity: 1;
       transform: translateY(0);
     }
@@ -1023,9 +1041,128 @@
         justify-content: center;
       }
     }
+
+    /* ── ACCESSIBILITY: SKIP LINK ── */
+    .skip-link {
+      position: fixed;
+      top: -48px;
+      left: 16px;
+      z-index: 200;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 10px 18px;
+      border-radius: var(--r-sm);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    /* ── FOCUS STATES ── */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: var(--r-sm);
+    }
+
+    /* ── SCROLL OFFSET FOR FIXED NAV ── */
+    section[id] {
+      scroll-margin-top: 88px;
+    }
+
+    /* ── ACTIVE / HOVER NAV INDICATOR ── */
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-links a.active {
+      color: var(--ink);
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* ── SECONDARY BUTTON + HERO ACTIONS ── */
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--border-hover);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    /* ── PRODUCT LINK WITH ANIMATED ARROW ── */
+    .pc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .pc-link svg {
+      transition: var(--transition);
+    }
+
+    .pc-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      .js .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .marquee-content,
+      .mv-orbit-1,
+      .mv-orbit-2,
+      .status-dot.pulsing {
+        animation: none !important;
+      }
+      * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
 
   <!-- ── MOBILE NAV OVERLAY ── -->
   <div class="mobile-nav-overlay" id="mobileNavOverlay">
@@ -1034,7 +1171,7 @@
       <li><a href="#products" onclick="toggleMobileMenu()">Products</a></li>
       <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
     </ul>
-    <button class="btn btn-primary mobile-nav-cta" onclick="toggleMobileMenu(); document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    <button type="button" class="btn btn-primary mobile-nav-cta" onclick="toggleMobileMenu(); document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
       Get in touch
     </button>
   </div>
@@ -1059,14 +1196,14 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
 
-      <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-        Get in touch 
+      <button type="button" class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Get in touch
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
 
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
+      <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNavOverlay" onclick="toggleMobileMenu()">
         <span></span>
         <span></span>
         <span></span>
@@ -1075,10 +1212,10 @@
   </nav>
 
   <!-- ── HERO ── -->
-  <section class="hero">
+  <section class="hero" id="main">
     <div class="hero-grid"></div>
-    <div class="hero-glow-1"></div>
-    <div class="hero-glow-2"></div>
+    <div class="hero-glow-1" data-hero-glow="1"></div>
+    <div class="hero-glow-2" data-hero-glow="2"></div>
     <div class="container">
       <div class="hero-content">
         <div class="section-eyebrow font-mono reveal">Digital Venture Studio</div>
@@ -1090,12 +1227,15 @@
         <p class="hero-sub reveal delay-2">
           Digiven is a venture studio that creates, launches, and scales <strong>digital products</strong> — where real problems meet real growth potential.
         </p>
-        <div class="reveal delay-3">
+        <div class="hero-actions reveal delay-3">
           <a href="#products" class="btn btn-primary">
             <span>See what we're building</span>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5.25 10.5L8.75 7L5.25 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <span>Get in touch</span>
           </a>
         </div>
       </div>
@@ -1244,7 +1384,10 @@
               Competitor social media intelligence for marketers. Track every post rivals publish across Instagram, Facebook and TikTok — with real engagement data on each one. Spike alerts when competitors outperform their average.
             </p>
             <div style="margin-bottom: 24px;">
-              <a href="https://www.pulsent.io" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 500;">www.pulsent.io</a>
+              <a href="https://www.pulsent.io" target="_blank" rel="noopener noreferrer" class="pc-link">
+                www.pulsent.io
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.25 10.5L8.75 7L5.25 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
             </div>
             <div class="pc-footer font-mono">TIMELINE: Q3 2026</div>
           </div>
@@ -1285,7 +1428,10 @@
               Autonomous AI social media personality operating across Instagram and beyond. Generates original content, engages audiences and builds following without human intervention. Where artificial intelligence meets digital influence.
             </p>
             <div style="margin-bottom: 24px;">
-              <a href="https://tiktok.com/@meet.neyra" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 500;">TK: @meet.neyra</a>
+              <a href="https://tiktok.com/@meet.neyra" target="_blank" rel="noopener noreferrer" class="pc-link">
+                TK: @meet.neyra
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.25 10.5L8.75 7L5.25 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
             </div>
             <div class="pc-footer font-mono">TIMELINE: Q4 2026</div>
           </div>
@@ -1327,7 +1473,10 @@
               One-stop marketplace connecting customers with verified service providers across multiple categories. Structured by category and filtered by sub-category for a seamless discovery experience. Any service, one platform.
             </p>
             <div style="margin-bottom: 24px;">
-              <a href="https://www.bronfy.com" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 500;">www.bronfy.com</a>
+              <a href="https://www.bronfy.com" target="_blank" rel="noopener noreferrer" class="pc-link">
+                www.bronfy.com
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.25 10.5L8.75 7L5.25 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
             </div>
             <div class="pc-footer font-mono">TIMELINE: Q3 2026</div>
           </div>
@@ -1368,7 +1517,10 @@
               AI-driven personal styling platform that suggests complete outfit combinations and trending items based on color preference and personal style. Helps shoppers wear their full wardrobe — helps retailers understand what customers actually want.
             </p>
             <div style="margin-bottom: 24px;">
-              <a href="https://www.lookus.app" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 500;">www.lookus.app</a>
+              <a href="https://www.lookus.app" target="_blank" rel="noopener noreferrer" class="pc-link">
+                www.lookus.app
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.25 10.5L8.75 7L5.25 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
             </div>
             <div class="pc-footer font-mono">TIMELINE: Q1 2027</div>
           </div>
@@ -1658,18 +1810,67 @@
       }, observerOptions);
 
       reveals.forEach(el => revealObserver.observe(el));
+
+      // Active nav link highlighting on scroll
+      const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+      const sections = Array.from(navLinks)
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+
+      if (sections.length) {
+        const navObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+            if (!link) return;
+            if (entry.isIntersecting) {
+              navLinks.forEach(l => l.classList.remove('active'));
+              link.classList.add('active');
+            }
+          });
+        }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+        sections.forEach(section => navObserver.observe(section));
+      }
+
+      // Subtle cursor parallax on hero glows (skipped for reduced-motion users)
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const glows = document.querySelectorAll('[data-hero-glow]');
+      if (!prefersReducedMotion && glows.length) {
+        const hero = document.querySelector('.hero');
+        let ticking = false;
+        let lastX = 0.5, lastY = 0.5;
+
+        hero.addEventListener('mousemove', (e) => {
+          const rect = hero.getBoundingClientRect();
+          lastX = (e.clientX - rect.left) / rect.width;
+          lastY = (e.clientY - rect.top) / rect.height;
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              glows.forEach((glow, i) => {
+                const strength = i === 0 ? 24 : -18;
+                const x = (lastX - 0.5) * strength;
+                const y = (lastY - 0.5) * strength;
+                glow.style.transform = `translate(${x}px, ${y}px)`;
+              });
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+      }
     });
 
     // Mobile menu toggle logic
     function toggleMobileMenu() {
       const overlay = document.getElementById('mobileNavOverlay');
       const btn = document.getElementById('mobileMenuBtn');
-      
-      overlay.classList.toggle('active');
-      
+
+      const isActive = overlay.classList.toggle('active');
+      btn.setAttribute('aria-expanded', String(isActive));
+
       // Transform burger menu icon
       const spans = btn.querySelectorAll('span');
-      if (overlay.classList.contains('active')) {
+      if (isActive) {
         spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
         spans[1].style.opacity = '0';
         spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
