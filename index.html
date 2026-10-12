@@ -1353,13 +1353,13 @@
             <div class="blueprint-grid"></div>
             <div class="blueprint-status">
               <span class="status-dot pulsing"></span>
-              <span class="status-text font-mono">LIVE</span>
+              <span class="status-text font-mono">LIVE — WAITLIST</span>
             </div>
             <!-- Corner tech overlays -->
             <div style="position: absolute; bottom: 16px; left: 16px; font-size: 9px; color: var(--muted); opacity: 0.6;" class="font-mono">SYS.OP: ACTIVE</div>
             <div style="position: absolute; bottom: 16px; right: 16px; font-size: 9px; color: var(--muted); opacity: 0.6;" class="font-mono">NODE_ID: 0x4B2</div>
             <div style="position: absolute; top: 16px; right: 16px; font-size: 9px; color: var(--muted); opacity: 0.6;" class="font-mono">DAT.FLUX</div>
-            <!-- Pulse specific graphic (bar chart / data) -->
+            <!-- Pulsent specific graphic (bar chart / data) -->
             <svg class="blueprint-graphic" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Grid lines -->
               <line x1="20" y1="80" x2="80" y2="80" stroke="var(--border)" stroke-width="1"/>
@@ -1631,6 +1631,94 @@
               <span style="color: var(--muted); font-size: 14px; font-weight: 500;">Link Pending</span>
             </div>
             <div class="pc-footer font-mono">TIMELINE: Q3 2027</div>
+          </div>
+        </div>
+
+        <!-- Product Card 7 -->
+        <div class="product-card reveal">
+          <div class="pc-blueprint">
+            <div class="blueprint-grid"></div>
+            <div class="blueprint-status">
+              <span class="status-dot pulsing"></span>
+              <span class="status-text font-mono">IN DEVELOPMENT</span>
+            </div>
+            <!-- Corner tech overlays -->
+            <div style="position: absolute; bottom: 16px; left: 16px; font-size: 9px; color: var(--muted); opacity: 0.6;" class="font-mono">SYS.OP: BUILD</div>
+            <div style="position: absolute; bottom: 16px; right: 16px; font-size: 9px; color: var(--muted); opacity: 0.6;" class="font-mono">NODE_ID: 0x3D7</div>
+            <div style="position: absolute; top: 16px; right: 16px; font-size: 9px; color: var(--muted); opacity: 0.6;" class="font-mono">EVT.MAP</div>
+            <!-- Ivent specific graphic (ticket + location pin) -->
+            <svg class="blueprint-graphic" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Ticket outline with notches -->
+              <path d="M 15 35 L 85 35 L 85 45 A 5 5 0 0 0 85 55 L 85 65 L 15 65 L 15 55 A 5 5 0 0 0 15 45 Z" stroke="var(--accent)" stroke-width="1.2" opacity="0.6"/>
+              <!-- Perforation -->
+              <line x1="62" y1="37" x2="62" y2="63" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 2"/>
+              <!-- Ticket data lines -->
+              <line x1="24" y1="45" x2="52" y2="45" stroke="var(--border)" stroke-width="1"/>
+              <line x1="24" y1="52" x2="46" y2="52" stroke="var(--border)" stroke-width="1"/>
+              <line x1="24" y1="58" x2="40" y2="58" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 2"/>
+              <!-- Location pin above ticket -->
+              <path d="M 73 30 L 66 20 A 8 8 0 1 1 80 20 Z" stroke="var(--accent)" stroke-width="1.5" opacity="0.8"/>
+              <circle cx="73" cy="15" r="2.5" fill="var(--accent)"/>
+              <!-- Stub node -->
+              <circle cx="73" cy="50" r="3.5" fill="var(--accent)" opacity="0.9"/>
+              <!-- Ground radius -->
+              <ellipse cx="50" cy="80" rx="30" ry="5" stroke="var(--border)" stroke-width="1" stroke-dasharray="3 3"/>
+            </svg>
+          </div>
+          <div class="pc-content">
+            <span class="pc-meta font-mono">EVENT DISCOVERY</span>
+            <h3 class="pc-title">Ivent</h3>
+            <p class="pc-description">
+              Platform for discovering and booking local events — concerts, festivals, cultural experiences, art shows, conferences and more. Everything happening around you in one place, from first browse to booked ticket.
+            </p>
+            <div style="margin-bottom: 24px;">
+              <span style="color: var(--muted); font-size: 14px; font-weight: 500;">Link Pending</span>
+            </div>
+            <div class="pc-footer font-mono">TIMELINE: Q1 2027</div>
+          </div>
+        </div>
+
+        <!-- Product Card 8 -->
+        <div class="product-card reveal delay-1">
+          <div class="pc-blueprint">
+            <div class="blueprint-grid"></div>
+            <div class="blueprint-status">
+              <span class="status-dot pulsing"></span>
+              <span class="status-text font-mono">IN DEVELOPMENT</span>
+            </div>
+            <!-- Corner tech overlays -->
+            <div style="position: absolute; bottom: 16px; left: 16px; font-size: 9px; color: var(--muted); opacity: 0.6;" class="font-mono">SYS.OP: BUILD</div>
+            <div style="position: absolute; bottom: 16px; right: 16px; font-size: 9px; color: var(--muted); opacity: 0.6;" class="font-mono">NODE_ID: 0x6C5</div>
+            <div style="position: absolute; top: 16px; right: 16px; font-size: 9px; color: var(--muted); opacity: 0.6;" class="font-mono">REQ.MATCH</div>
+            <!-- Vizaro specific graphic (one request, many offers) -->
+            <svg class="blueprint-graphic" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Buyer request node -->
+              <rect x="15" y="40" width="20" height="20" stroke="var(--accent)" stroke-width="1.5" opacity="0.8"/>
+              <circle cx="25" cy="50" r="3" fill="var(--accent)"/>
+              <!-- Broadcast lines to sellers -->
+              <line x1="35" y1="50" x2="68" y2="22" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="35" y1="50" x2="68" y2="50" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="35" y1="50" x2="68" y2="78" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 2"/>
+              <!-- Seller offer nodes -->
+              <circle cx="75" cy="22" r="7" stroke="var(--accent)" stroke-width="1.2" opacity="0.6"/>
+              <circle cx="75" cy="50" r="7" stroke="var(--accent)" stroke-width="1.2" opacity="0.6"/>
+              <circle cx="75" cy="78" r="7" stroke="var(--accent)" stroke-width="1.2" opacity="0.6"/>
+              <!-- Winning offer -->
+              <circle cx="75" cy="50" r="3" fill="var(--accent)"/>
+              <!-- Return path for accepted offer -->
+              <path d="M 68 54 Q 52 66 35 56" stroke="var(--accent)" stroke-width="1.2" opacity="0.8"/>
+            </svg>
+          </div>
+          <div class="pc-content">
+            <span class="pc-meta font-mono">REVERSE MARKETPLACE</span>
+            <h3 class="pc-title">Vizaro</h3>
+            <p class="pc-description">
+              Buyers post what they want — custom furniture, specific vintage pieces, hard-to-find décor — and sellers, craftsmen and manufacturers respond with offers. Demand comes first, supply competes to meet it.
+            </p>
+            <div style="margin-bottom: 24px;">
+              <span style="color: var(--muted); font-size: 14px; font-weight: 500;">Link Pending</span>
+            </div>
+            <div class="pc-footer font-mono">TIMELINE: Q1 2027</div>
           </div>
         </div>
       </div>
