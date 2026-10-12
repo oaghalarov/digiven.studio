@@ -487,12 +487,12 @@
 
     /* ── SECTION CORE ── */
     section.py-sec {
-      padding: 120px 0;
+      padding: 96px 0;
     }
 
     @media (max-width: 768px) {
       section.py-sec {
-        padding: 80px 0;
+        padding: 64px 0;
       }
     }
 
@@ -616,6 +616,12 @@
       gap: 24px;
     }
 
+    @media (min-width: 1101px) {
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
     @media (max-width: 900px) {
       .products-grid {
         grid-template-columns: 1fr;
@@ -642,7 +648,7 @@
 
     /* Sleek Blueprint / Schematic Placeholder Graphic */
     .pc-blueprint {
-      height: 200px;
+      height: 150px;
       background: #0c0e0d;
       position: relative;
       overflow: hidden;
@@ -698,8 +704,8 @@
     }
 
     .blueprint-graphic {
-      width: 120px;
-      height: 120px;
+      width: 96px;
+      height: 96px;
       opacity: 0.45;
       transition: var(--transition);
     }
