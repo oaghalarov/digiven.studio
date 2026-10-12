@@ -965,21 +965,103 @@
       margin-bottom: 40px;
     }
 
-    .cta-email {
-      margin-top: 32px;
-      font-size: 13px;
-      color: var(--muted);
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      text-align: left;
     }
 
-    .cta-email a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
+    @media (max-width: 600px) {
+      .contact-form {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cf-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cf-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .cf-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .cf-input {
+      width: 100%;
+      background: var(--bg-elevate);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 14px 16px;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink);
       transition: var(--transition);
     }
 
-    .cta-email a:hover {
-      border-color: var(--accent);
+    .cf-input::placeholder {
+      color: var(--muted);
+      opacity: 0.5;
+    }
+
+    .cf-input:hover {
+      border-color: var(--border-hover);
+    }
+
+    .cf-input:focus {
+      outline: none;
+      border-color: var(--accent-border);
+      background: var(--bg-elevate-hover);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+
+    textarea.cf-input {
+      min-height: 140px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .cf-honeypot {
+      display: none;
+    }
+
+    .cf-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .contact-form .btn[disabled] {
+      opacity: 0.6;
+      cursor: wait;
+      transform: none;
+    }
+
+    .cf-status {
+      font-size: 13px;
+      color: var(--muted);
+      min-height: 20px;
+      text-align: center;
+    }
+
+    .cf-status.success {
+      color: var(--accent);
+    }
+
+    .cf-status.error {
+      color: #F08A6A;
     }
 
     /* ── FOOTER ── */
@@ -1837,17 +1919,36 @@
         <p class="cta-sub">
           Whether you are an investor, developer, project lead, or simply curious about our pipeline — we'd like to hear from you. Let's build fast and launch real.
         </p>
-        <div>
-          <a href="mailto:hello@digiven.studio" class="btn btn-primary">
-            <span>Send message</span>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3.5 7H10.5M10.5 7L7.5 4M10.5 7L7.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-        <div class="cta-email font-mono">
-          Email: <a href="mailto:hello@digiven.studio">hello@digiven.studio</a>
-        </div>
+        <form id="contactForm" class="contact-form" novalidate>
+          <!-- Web3Forms access key: get one free at https://web3forms.com -->
+          <input type="hidden" name="access_key" value="ea2fa800-6c03-404f-b3d7-0485ed9b3c0f">
+          <input type="hidden" name="subject" value="New message from digiven.studio">
+          <input type="hidden" name="from_name" value="Digiven Studio Website">
+          <!-- Spam trap: real visitors never see or tick this -->
+          <input type="checkbox" name="botcheck" class="cf-honeypot" tabindex="-1" autocomplete="off">
+
+          <div class="cf-field">
+            <label for="cf-name" class="cf-label font-mono">Name</label>
+            <input id="cf-name" name="name" type="text" class="cf-input" placeholder="Your name" autocomplete="name" required>
+          </div>
+          <div class="cf-field">
+            <label for="cf-email" class="cf-label font-mono">Email</label>
+            <input id="cf-email" name="email" type="email" class="cf-input" placeholder="you@company.com" autocomplete="email" required>
+          </div>
+          <div class="cf-field full">
+            <label for="cf-message" class="cf-label font-mono">Message</label>
+            <textarea id="cf-message" name="message" class="cf-input" placeholder="Tell us what you have in mind" required></textarea>
+          </div>
+          <div class="cf-actions">
+            <button type="submit" class="btn btn-primary">
+              <span>Send message</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.5 7H10.5M10.5 7L7.5 4M10.5 7L7.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="cf-status font-mono" role="status" aria-live="polite"></div>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -1968,6 +2069,56 @@
         spans[2].style.transform = 'none';
       }
     }
+
+    // Contact form → Web3Forms (delivers to the studio inbox without exposing the address)
+    (function () {
+      const form = document.getElementById('contactForm');
+      if (!form) return;
+      const status = form.querySelector('.cf-status');
+      const button = form.querySelector('button[type="submit"]');
+      const buttonLabel = button.querySelector('span');
+
+      function setStatus(text, type) {
+        status.textContent = text;
+        status.className = 'cf-status font-mono' + (type ? ' ' + type : '');
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const fields = form.elements;
+        const name = fields.namedItem('name').value.trim();
+        const email = fields.namedItem('email').value.trim();
+        const message = fields.namedItem('message').value.trim();
+        if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          setStatus('Please fill in your name, a valid email and a message.', 'error');
+          return;
+        }
+
+        button.disabled = true;
+        buttonLabel.textContent = 'Sending…';
+        setStatus('', '');
+
+        try {
+          const payload = Object.fromEntries(new FormData(form));
+          payload.botcheck = fields.namedItem('botcheck').checked;
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+          if (!res.ok || !data.success) throw new Error(data.message || 'Request failed');
+          form.reset();
+          setStatus("Thanks — your message is in. We'll get back to you soon.", 'success');
+        } catch (err) {
+          setStatus('Something went wrong. Please try again in a moment.', 'error');
+        } finally {
+          button.disabled = false;
+          buttonLabel.textContent = 'Send message';
+        }
+      });
+    })();
   </script>
 </body>
 </html>
