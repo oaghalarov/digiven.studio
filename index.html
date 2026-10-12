@@ -96,6 +96,7 @@
     .delay-2 { transition-delay: 0.2s; }
     .delay-3 { transition-delay: 0.3s; }
     .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
 
     /* Utility typography styles */
     .font-mono {
@@ -1070,6 +1071,32 @@
       color: #F08A6A;
     }
 
+    .cf-select {
+      appearance: none;
+      cursor: pointer;
+      padding-right: 40px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%2393A899' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+
+    .cf-select:invalid {
+      color: rgba(147, 168, 153, 0.5);
+    }
+
+    .cf-select option {
+      background: var(--bg-elevate);
+      color: var(--ink);
+    }
+
+    .cf-privacy {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      opacity: 0.7;
+      text-align: center;
+    }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -1339,7 +1366,7 @@
         <div class="marquee-item"><span>Create · Launch · Test</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Market Validation</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Rapid Prototyping</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Vibe Coding</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span>AI-Native Engineering</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Systematic Growth</span><span class="marquee-dot"></span></div>
       </div>
       <div class="marquee-content" aria-hidden="true">
@@ -1348,7 +1375,7 @@
         <div class="marquee-item"><span>Create · Launch · Test</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Market Validation</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Rapid Prototyping</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Vibe Coding</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span>AI-Native Engineering</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Systematic Growth</span><span class="marquee-dot"></span></div>
       </div>
       <div class="marquee-content" aria-hidden="true">
@@ -1357,7 +1384,7 @@
         <div class="marquee-item"><span>Create · Launch · Test</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Market Validation</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Rapid Prototyping</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Vibe Coding</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span>AI-Native Engineering</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Systematic Growth</span><span class="marquee-dot"></span></div>
       </div>
       <div class="marquee-content" aria-hidden="true">
@@ -1366,7 +1393,7 @@
         <div class="marquee-item"><span>Create · Launch · Test</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Market Validation</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Rapid Prototyping</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span>Vibe Coding</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span>AI-Native Engineering</span><span class="marquee-dot"></span></div>
         <div class="marquee-item"><span>Systematic Growth</span><span class="marquee-dot"></span></div>
       </div>
     </div>
@@ -1984,6 +2011,16 @@
             <input id="cf-email" name="email" type="email" class="cf-input" placeholder="you@company.com" autocomplete="email" required>
           </div>
           <div class="cf-field full">
+            <label for="cf-role" class="cf-label font-mono">I am a</label>
+            <select id="cf-role" name="role" class="cf-input cf-select" required>
+              <option value="" disabled selected>Select one</option>
+              <option value="Investor">Investor</option>
+              <option value="Partner">Partner / Business</option>
+              <option value="Talent">Developer / Designer / Talent</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="cf-field full">
             <label for="cf-message" class="cf-label font-mono">Message</label>
             <textarea id="cf-message" name="message" class="cf-input" placeholder="Tell us what you have in mind" required></textarea>
           </div>
@@ -1995,6 +2032,7 @@
               </svg>
             </button>
             <div class="cf-status font-mono" role="status" aria-live="polite"></div>
+            <p class="cf-privacy">We only use your details to reply to your message. Nothing is shared or added to a mailing list.</p>
           </div>
         </form>
       </div>
@@ -2138,8 +2176,9 @@
         const name = fields.namedItem('name').value.trim();
         const email = fields.namedItem('email').value.trim();
         const message = fields.namedItem('message').value.trim();
-        if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          setStatus('Please fill in your name, a valid email and a message.', 'error');
+        const role = fields.namedItem('role').value;
+        if (!name || !role || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          setStatus('Please fill in your name, a valid email, who you are and a message.', 'error');
           return;
         }
 
@@ -2150,6 +2189,7 @@
         try {
           const payload = Object.fromEntries(new FormData(form));
           payload.botcheck = fields.namedItem('botcheck').checked;
+          payload.subject = '[' + role + '] New message from digiven.studio';
           const res = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
