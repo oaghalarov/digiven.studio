@@ -275,6 +275,24 @@ body{margin:0;background:var(--bg);-webkit-font-smoothing:antialiased}
   .tile.ty .art{opacity:.45}
   .foot{flex-direction:column;align-items:flex-start}
 }
+/* ---- phone fixes ---- */
+.form{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.f input,.f select,.f textarea{width:100%;min-width:0;box-sizing:border-box}
+.foot-links a{display:inline-block;padding:11px 0}
+.pt-over a{display:inline-block;padding:10px 0}
+@media (max-width:900px){ .form{grid-template-columns:minmax(0,1fr)} .hero-mark{opacity:.15} }
+@media (max-width:560px){ .hero-mark{opacity:1;width:110px;top:36px;right:12px} .hero-in{padding-top:160px} }
+@media (max-width:380px){
+  .nav-links{gap:8px}
+  .round{width:42px;height:42px}
+  .logo{gap:8px}
+  .logo svg{width:30px;height:30px}
+  .logo-word{font-size:17px}
+  .eyebrow{font-size:11.5px;letter-spacing:1.5px}
+  .h1{font-size:40px}
+  .wrap{padding-left:16px;padding-right:16px}
+  .form{padding:18px}
+}
   </style>
 </head>
 <body>
